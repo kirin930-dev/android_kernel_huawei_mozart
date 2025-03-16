@@ -1276,11 +1276,7 @@
 /* number of bytes needed to define a proper bit mask for MAC event reporting */
 #define BCMIO_ROUNDUP(x, y)	((((x) + ((y) - 1)) / (y)) * (y))
 #define BCMIO_NBBY		8
-#ifdef CONFIG_BCM4339
-#define WL_EVENTING_MASK_LEN	18
-#else
-#define WL_EVENTING_MASK_LEN    16
-#endif
+#define WL_EVENTING_MASK_LEN	16
 
 
 /* join preference types */

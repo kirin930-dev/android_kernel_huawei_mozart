@@ -3202,10 +3202,6 @@ wl_iw_set_pmksa(
 	}
 	if (iwpmksa->cmd == IW_PMKSA_REMOVE) {
 		pmkid_list_t pmkid, *pmkidptr;
-#ifdef HW_MEM_OVERFLOW_BUGFIX
-		if (pmkid_list.pmkids.npmkid == 0)
-			return -1;
-#endif
 		pmkidptr = &pmkid;
 		bcopy(&iwpmksa->bssid.sa_data[0], &pmkidptr->pmkid[0].BSSID, ETHER_ADDR_LEN);
 		bcopy(&iwpmksa->pmkid[0], &pmkidptr->pmkid[0].PMKID, WPA2_PMKID_LEN);
@@ -3233,10 +3229,6 @@ wl_iw_set_pmksa(
 		pmkid_list.pmkids.npmkid--;
 	}
 	if (iwpmksa->cmd == IW_PMKSA_ADD) {
-#ifdef HW_MEM_OVERFLOW_BUGFIX
-		if (pmkid_list.pmkids.npmkid == MAXPMKID)
-			return -1;
-#endif
 		bcopy(&iwpmksa->bssid.sa_data[0],
 			&pmkid_array[pmkid_list.pmkids.npmkid].BSSID,
 			ETHER_ADDR_LEN);
